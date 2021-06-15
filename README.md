@@ -18,12 +18,12 @@
 
 Customer Management uses a number of open source projects to work properly:
 
-- [AngularJS] - HTML enhanced for web apps
-- [Visual Studio] - project editor
-- [Bootstrap] - UI boilerplate for modern web apps
-- [.NET Core 3.1] - LST version for the backend API
-- [Entity Framework Core] - object-relational mapper
-- [SQL Server] - database
+- [AngularJS 8.2] - HTML enhanced for web apps
+- [Visual Studio 2019] - project editor
+- [Bootstrap 4.6] - UI boilerplate for modern web apps
+- [.NET Core 3.1] - LTS version for the backend API
+- [Entity Framework Core 5] - object-relational mapper
+- [Microsoft SQL Server Express 14] - database
 
 
 ## Installation
