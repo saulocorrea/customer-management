@@ -7,5 +7,6 @@ namespace Application.Services
     {
         IEnumerable<CustomerDto> GetCustomersAdmin();
         IEnumerable<CustomerDto> GetCustomersBySeller(int idUser);
+        IEnumerable<CustomerDto> FindCustomers(CustomerFilterRequest request);
     }
 }

@@ -4,6 +4,7 @@ namespace Application.DTOs
 {
     public class UserSysDto
     {
+        public int Id { get; set; }
         public string Login { get; set; }
         public string Email { get; set; }
 
@@ -16,6 +17,7 @@ namespace Application.DTOs
 
             return new UserSysDto
             {
+                Id = user.Id,
                 Email = user.Email,
                 Login = user.Login
             };

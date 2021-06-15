@@ -27,5 +27,20 @@ namespace Application.Services
                 .Select(c => (CustomerDto)c)
                 .ToList();
         }
+
+        public IEnumerable<CustomerDto> FindCustomers(CustomerFilterRequest request)
+        {
+            return _customerRepository.FindCustomers(
+                request.Name,
+                request.GenderId,
+                request.CityId,
+                request.RegionId,
+                request.LastPurchaseFrom,
+                request.LastPurchaseUntil,
+                request.ClassificationId,
+                request.UserId)
+                .Select(c => (CustomerDto)c)
+                .ToList();
+        }
     }
 }

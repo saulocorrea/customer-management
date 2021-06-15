@@ -1,32 +1,93 @@
 <h1>Customers</h1>
 
+<div class="">
+  <form [formGroup]="form">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="fieldname">Name</label>
+        <input type="text" class="form-control" id="fieldname" placeholder="Name" formControlName="name">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputGender">Gender</label>
+        <select id="inputGender" class="form-control" formControlName="genderId">
+          <option selected>Choose...</option>
+          <option *ngFor="let gender of genders" value="{{gender.id}}">{{gender.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputRegion">Region</label>
+        <select id="inputRegion" class="form-control" formControlName="regionId">
+          <option selected>Choose...</option>
+          <option *ngFor="let region of regions" value="{{region.id}}">{{region.name}}</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="fieldCity">City</label>
+        <select id="fieldCity" class="form-control" formControlName="cityId">
+          <option selected>Choose...</option>
+          <option *ngFor="let city of cities" value="{{city.id}}">{{city.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="inputLastPurchaseFrom">Last Purchase</label>
+        <input type="date" class="form-control" id="inputLastPurchaseFrom" placeholder="" formControlName="lastPurchaseFrom">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputLastPurchaseUntil">until</label>
+        <input type="date" class="form-control" id="inputLastPurchaseUntil" placeholder="" formControlName="lastPurchaseUntil">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="fieldClassification">Classification</label>
+        <select id="fieldClassification" class="form-control" formControlName="classificationId">
+          <option selected>Choose...</option>
+          <option *ngFor="let classification of classifications" value="{{classification.id}}">{{classification.name}}</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6" *ngIf="isAdmin">
+        <label for="inputSeller">Seller</label>
+        <select id="inputSeller" class="form-control" formControlName="userId">
+          <option selected>Choose...</option>
+          <option *ngFor="let user of users" value="{{user.id}}">{{user.login}}</option>
+        </select>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="submit()">Search</button>
+    <button type="submit" class="btn btn-primary ml-3" (click)="clearForm()">Clear Fields</button>
+  </form>
+</div>
+
 <p *ngIf="!customers"><em>Loading...</em></p>
-
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="customers">
-  <thead>
-    <tr>
-      <th>Classification</th>
-      <th>Name</th>
-      <th>Phone</th>
-      <th>Gender</th>
-      <th>City</th>
-      <th>Region</th>
-      <th>Last Purchase</th>
-      <th *ngIf="isAdmin">Seller</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let customer of customers">
-      <td>{{customer.classification}}</td>
-      <td>{{customer.name}}</td>
-      <td>{{customer.phone}}</td>
-      <td>{{customer.gender}}</td>
-      <td>{{customer.city}}</td>
-      <td>{{customer.region}}</td>
-      <td>{{customer.lastPurchase}}</td>
-      <td *ngIf="isAdmin">{{customer.seller}}</td>
-    </tr>
-  </tbody>
-</table>
-
-<button class="btn btn-primary" (click)="getCustomerList()">Get Customer List</button>
+<div class="pt-3">
+  <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="customers">
+    <thead>
+      <tr>
+        <th>Classification</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Gender</th>
+        <th>City</th>
+        <th>Region</th>
+        <th>Last Purchase</th>
+        <th *ngIf="isAdmin">Seller</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers">
+        <td>{{customer.classification}}</td>
+        <td>{{customer.name}}</td>
+        <td>{{customer.phone}}</td>
+        <td>{{customer.gender}}</td>
+        <td>{{customer.city}}</td>
+        <td>{{customer.region}}</td>
+        <td>{{customer.lastPurchase}}</td>
+        <td *ngIf="isAdmin">{{customer.seller}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

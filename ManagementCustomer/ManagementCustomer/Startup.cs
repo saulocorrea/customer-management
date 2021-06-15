@@ -69,27 +69,17 @@ namespace ManagementCustomer
             
             IdentityModelEventSource.ShowPII = true;
 
-            //services.AddAuthentication(x =>
-            //{
-            //    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            //})
-            //.AddJwtBearer(x =>
-            //{
-            //    x.RequireHttpsMetadata = false;
-            //    x.SaveToken = true;
-            //    x.TokenValidationParameters = new TokenValidationParameters
-            //    {
-            //        ValidateIssuerSigningKey = true,
-            //        IssuerSigningKey = new SymmetricSecurityKey(key),
-            //        ValidateIssuer = false,
-            //        ValidateAudience = false
-            //    };
-            //});
-
             services.Configure<JwtSettings>(Configuration.GetSection("JwtSettings"));
 
             services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IAddressRepository, AddressRepository>();
+            services.AddScoped<IClassificationRepository, ClassificationRepository>();
+            services.AddScoped<IGenderRepository, GenderRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IAddressService, AddressService>();
+            services.AddScoped<IClassificationService, ClassificationService>();
+            services.AddScoped<IGenderService, GenderService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
         }

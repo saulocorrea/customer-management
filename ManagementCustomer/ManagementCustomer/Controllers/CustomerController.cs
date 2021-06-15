@@ -27,10 +27,7 @@ namespace ManagementCustomer.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<CustomerDto>))]
         public ActionResult ListCustomers()
         {
-            IEnumerable<CustomerDto> customers = new List<CustomerDto>();
-
-            //int userId = User.GetUserId();
-            //UserSysDto user = _authenticationService.GetUserById(userId);
+            IEnumerable<CustomerDto> customers;
 
             if (User.GetUserIsAdmin())
             {
@@ -40,6 +37,22 @@ namespace ManagementCustomer.Controllers
             {
                 customers = _customerService.GetCustomersBySeller(User.GetUserId());
             }
+
+            return Ok(customers);
+        }
+
+        [HttpPost("find")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<CustomerDto>))]
+        public ActionResult FindCustomers([FromBody] CustomerFilterRequest request)
+        {
+            IEnumerable<CustomerDto> customers;
+
+            if (!User.GetUserIsAdmin())
+            {
+                request.UserId = User.GetUserId();
+            }
+
+            customers = _customerService.FindCustomers(request);
 
             return Ok(customers);
         }
