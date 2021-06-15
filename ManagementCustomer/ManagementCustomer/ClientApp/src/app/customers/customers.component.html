@@ -1,0 +1,32 @@
+<h1>Customers</h1>
+
+<p *ngIf="!customers"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="customers">
+  <thead>
+    <tr>
+      <th>Classification</th>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Gender</th>
+      <th>City</th>
+      <th>Region</th>
+      <th>Last Purchase</th>
+      <th *ngIf="isAdmin">Seller</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let customer of customers">
+      <td>{{customer.classification}}</td>
+      <td>{{customer.name}}</td>
+      <td>{{customer.phone}}</td>
+      <td>{{customer.gender}}</td>
+      <td>{{customer.city}}</td>
+      <td>{{customer.region}}</td>
+      <td>{{customer.lastPurchase}}</td>
+      <td *ngIf="isAdmin">{{customer.seller}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<button class="btn btn-primary" (click)="getCustomerList()">Get Customer List</button>
